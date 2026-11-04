@@ -66,3 +66,4 @@ public class AutoAfkClient implements ClientModInitializer {
 		});
 	}
 }
+// ENDE
