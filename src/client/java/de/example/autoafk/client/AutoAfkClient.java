@@ -47,22 +47,7 @@ public class AutoAfkClient implements ClientModInitializer {
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			while (menuKey.consumeClick()) {
-				client.setScreen(new AfkScreen());
+				client.gui.setScreen(new AfkScreen());
 			}
 
-			if (client.player == null || client.getConnection() == null) return;
-
-			if (joinDelay > 0 && --joinDelay == 0) {
-				joinDelay = -1;
-				running = true;
-				ticks = 0;
-				client.getConnection().sendCommand("afk");
-			}
-
-			if (running && ++ticks >= intervalTicks()) {
-				ticks = 0;
-				client.getConnection().sendCommand("afk");
-			}
-		});
-	}
-}
+			if (client.player
